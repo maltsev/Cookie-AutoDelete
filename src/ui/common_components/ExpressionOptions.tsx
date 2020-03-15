@@ -157,6 +157,14 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
     });
   }
 
+  public toggleIsRegExp(checked: boolean) {
+    const { expression, onUpdateExpression } = this.props;
+    onUpdateExpression({
+      ...expression,
+      isRegExp: checked,
+    });
+  }
+
   public render() {
     const { cookies } = this.state;
     const { expression, state } = this.props;
@@ -190,7 +198,29 @@ class ExpressionOptions extends React.Component<ExpressionOptionsProps> {
               </span>
             </div>
           )}
-        {}
+        <div className={'checkbox'}>
+          <span
+            className={'addHover'}
+            onClick={() =>
+              this.toggleIsRegExp(!expression.isRegExp)
+            }
+          >
+            {expression.isRegExp ? (
+              <FontAwesomeIcon
+                style={styles.checkbox}
+                size={'lg'}
+                icon={['far', 'check-square']}
+              />
+            ) : (
+              <FontAwesomeIcon
+                style={styles.checkbox}
+                size={'lg'}
+                icon={['far', 'square']}
+              />
+            )}
+            <label>{browser.i18n.getMessage('regExpExpression')}</label>
+          </span>
+        </div>
         <div className={'checkbox'}>
           <span
             className={'addHover'}

@@ -50,6 +50,13 @@ const exampleWithCookieName: Expression = {
   storeId: 'default',
 };
 
+const whiteListAllExceptTwitter: Expression = {
+  expression: '^((?!twitter\.com).)+$',
+  id: '6',
+  listType: ListType.WHITE,
+  storeId: 'default',
+};
+
 const exampleWithCookieNameCleanAllCookiesTrue: Expression = {
   ...exampleWithCookieName,
   cleanAllCookies: true,
@@ -68,6 +75,7 @@ const sampleState: State = {
     default: [
       wildCardWhiteListGoogle,
       whiteListYoutube,
+      whiteListAllExceptTwitter,
       exampleWithCookieName,
       exampleWithCookieNameCleanAllCookiesTrue,
     ],
@@ -326,6 +334,21 @@ describe('CleanupService', () => {
       });
       expect(result.reason).toBe(ReasonKeep.MatchedExpression);
       expect(result.cleanCookie).toBe(false);
+    });
+
+    it('should return true for twitter.com', () => {
+      const cookieProperty = {
+        ...mockCookie,
+        hostname: 'twitter.com',
+        mainDomain: 'twitter.com',
+        storeId: 'default',
+      };
+
+      const result = isSafeToClean(sampleState, cookieProperty, {
+        ...cleanupProperties,
+      });
+      expect(result.reason).toBe(ReasonClean.NoMatchedExpression);
+      expect(result.cleanCookie).toBe(true);
     });
 
     it('should return true for google.com in Personal', () => {

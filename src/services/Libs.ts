@@ -172,9 +172,10 @@ export const returnMatchedExpressionObject = (
 ) => {
   const storeId = getStoreId(state, cookieStoreId);
   const expressionList = state.lists[storeId] || [];
-  return expressionList.find(expression =>
-    new RegExp(globExpressionToRegExp(expression.expression)).test(hostname),
-  );
+  return expressionList.find(expression => {
+    const regExp = expression.isRegExp ? expression.expression : globExpressionToRegExp(expression.expression);
+    return new RegExp(regExp).test(hostname);
+  });
 };
 
 /**

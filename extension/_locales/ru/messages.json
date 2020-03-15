@@ -239,6 +239,10 @@
     "message": "Оставить содержимое локального хранилища",
     "description": "Keep Localstorage"
   },
+  "regExpExpression": {
+    "message": "Регулярное выражение",
+    "description": "Treat this expression as RegExp"
+  },
   "keepAllCookiesText": {
     "message": "Оставить все куки",
     "description": "Keep All Cookies"

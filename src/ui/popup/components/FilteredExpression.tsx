@@ -64,9 +64,10 @@ const getExpression = (state: State, props: OwnProps) =>
 const getMatchedExpressions = (state: State, props: OwnProps) => {
   const expressions = getExpression(state, props);
   const url = props.url;
-  return expressions.filter(expression =>
-    new RegExp(globExpressionToRegExp(expression.expression)).test(url),
-  );
+  return expressions.filter(expression => {
+    const regExp = expression.isRegExp ? expression.expression : globExpressionToRegExp(expression.expression);
+    return new RegExp(regExp).test(url);
+  });
 };
 
 const mapStateToProps = (state: State, props: OwnProps) => ({

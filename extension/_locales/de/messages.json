@@ -239,6 +239,10 @@
     "message": "Local Storage behalten",
     "description": "Keep Localstorage"
   },
+  "regExpExpression": {
+    "message": "RegExp",
+    "description": "Treat this expression as RegExp"
+  },
   "keepAllCookiesText": {
     "message": "Alle Cookies behalten",
     "description": "Keep All Cookies"

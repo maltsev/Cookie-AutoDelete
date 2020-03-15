@@ -279,6 +279,11 @@
     "description": "Keep Localstorage"
   },
 
+  "regExpExpression": {
+    "message": "RegExp",
+    "description": "Treat this expression as RegExp"
+  },
+
   "keepAllCookiesText": {
     "message": "Keep All Cookies",
     "description": "Keep All Cookies"

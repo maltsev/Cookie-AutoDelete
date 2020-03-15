@@ -27,6 +27,7 @@ type Expression = Readonly<{
   expression: string;
   cleanLocalStorage?: boolean;
   cleanAllCookies?: boolean;
+  isRegExp?: boolean;
   listType: ListType;
   storeId: string;
   id?: string;
